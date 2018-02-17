@@ -1,10 +1,13 @@
 # passport-oauth2-client-nosecret
 
+Client verification/authentication strategy for Passport.
+
 Just like [passport-oauth2-client-password](https://github.com/jaredhanson/passport-oauth2-client-password), except it doesn't require the `client_secret`.
 
 ## Notes
 
-Only unprotected clients like native and single-page applications should use this strategy. Additionally, developers must implement additional security enhancements (e.g., [PKCE](https://tools.ietf.org/html/rfc7636)) if necessary.
+* Only servers that support unprotected clients (e.g., native and single-page applications) should use this strategy. 
+* Developers must implement additional security enhancements (e.g., [PKCE](https://tools.ietf.org/html/rfc7636)) if necessary.
 
 ## Installation
 
