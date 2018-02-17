@@ -1,6 +1,6 @@
 {
   "name": "passport-oauth2-client-nosecret",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "dependencies": {
     "passport-strategy": "^1.0.0"
