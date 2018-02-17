@@ -18,14 +18,12 @@ npm install passport-oauth2-client-nosecret --save
 ## Usage
 
 ```
-passport.use(new ClientNoSecretStrategy(function(client_id, client_secret, next){
+passport.use(new ClientNoSecretStrategy(function(client_id, client_secret, next) {
     Client.findOne({ client_id: client_id }, function(err, client) {
         if(err) return next(err);
         
-        if(!client) return next(null, false);
+        if(!client || (client_secret && client.secret !== client_secret)) return next(null, false);
         
-        if(client_secret && client.secret !== client_secret) return next(null, false);
-
         return next(null, client);
     });
 }));
