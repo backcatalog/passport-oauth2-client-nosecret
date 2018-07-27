@@ -19,9 +19,12 @@ function Strategy(options, verify) {
 util.inherits(Strategy, passport.Strategy);
 
 Strategy.prototype.authenticate = function(req) {
-    if(!req.body || !req.body['client_id']) return this.fail();
+    const noClientInBody = !req.body || !req.body['client_id'];
+    const noClientInHeaders = !req.headers || !req.headers['cid'];
 
-    var clientId = req.body['client_id'];
+    if(noClientInBody && noClientInHeaders) return this.fail();
+
+    var clientId = req.body['client_id'] || req.headers['cid'];
     var clientSecret = req.body['client_secret'];
     var self = this;
 
@@ -35,6 +38,6 @@ Strategy.prototype.authenticate = function(req) {
 
     if(self._passReqToCallback) this._verify(req, clientId, clientSecret, verified);
     else this._verify(clientId, clientSecret, verified);
-}
+};
 
-module.exports = { Strategy };
+module.exports = {Strategy};
